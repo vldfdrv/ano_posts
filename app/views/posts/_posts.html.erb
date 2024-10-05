@@ -1,0 +1,31 @@
+<div style="margin: 30px;">
+  <% if !@posts.nil? %>
+    <% @posts.each do |post| %>
+      <div>
+        <%= "#{post.user.login} (#{post.region}) #{post.created_at.strftime("%d.%m.%Y")}:" %>
+      </div>
+      <div style="border: 1px solid grey; width: 300px; border-radius: 4px;  padding: 10px 5px;">
+        <%= post.text %>
+      </div>
+      <% if params[:action] == "my_drafts" %>
+        <div>
+          <%= post.status %>
+        </div>
+      <% end %>
+      <div style="margin: 0 10px 20px 0; font-size: 12px">
+        <% if current_user.admin? %>
+          <%= link_to "Утвердить", approve_or_reject_post_path(post.id, status: :approve), style: "color: green" %>
+          <%= link_to "Отклонить", approve_or_reject_post_path(post.id, status: :reject), style: "color: red" %>
+        <% else %>
+          <% if post.status == Post::STATUS_DRAFT %>
+            <%= link_to "Удалить", post_path(post.id), method: :delete, style: "color: red" if current_user.id == post.user_id %>
+            <%= link_to "На проверку", approve_or_reject_post_path(post.id, status: :inspect), style: "color: orange" %>
+          <% end %>
+        <% end %>
+      </div>
+
+<% end %>
+  <% else %>
+    <%= "В вашем регионе пока нет постов, создайте первый" %>
+  <% end %>
+</div>

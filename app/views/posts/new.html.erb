@@ -1,0 +1,39 @@
+<div class="main_reg_block">
+  <h1 class="new_btn_block"> Новый пост </h1>
+  <hr>
+
+  <%= form_for @post, url: posts_url, html: { method: :post } do |form| %>
+
+
+    <% if @post.errors.any? %>
+      <div class="alert alert-danger">
+        <% @post.errors.full_messages.each do |message|%>
+          <div>
+            <%= message %> <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="new_input">
+      <%= form.label :text, "Текст" %>
+      <%= form.text_area :text, class: "form-control", placeholder: "Напишите, что думаете", rows: 7 %>
+    </div>
+
+    <hr>
+
+
+    <% if current_user.admin? %>
+      <div class="new_btn_block">
+        <%= form.submit "Сохранить черновик", name: 'to_approved', class: 'btn btn-primary new_reg_btn' %>
+      </div>
+    <% else %>
+      <div class="new_btn_block">
+        <%= form.submit "Сохранить черновик", name: "to_draft", class: 'btn btn-primary new_reg_btn' %>
+      </div>
+
+      <div class="new_btn_block">
+        <%= form.submit "Отправить на проверку", name: "to_inspect", class: 'btn btn-primary new_reg_btn' %>
+      </div>
+    <% end %>
+
+<% end %>
+</div>

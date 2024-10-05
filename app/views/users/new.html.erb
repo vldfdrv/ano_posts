@@ -1,0 +1,52 @@
+<div class="main_reg_block">
+  <h1 class="new_btn_block"> Создать админа </h1>
+  <hr>
+
+  <%= form_for @user, url: users_url, html: { method: :post } do |form| %>
+
+    <% if @user.errors.any? %>
+      <div class="alert alert-danger">
+        <% @user.errors.full_messages.each do |message|%>
+          <div>
+            <%= message %> <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="new_input">
+      <%= form.label :login, "Логин" %>
+      <%= form.text_field :login, class: "form-control", placeholder: "myname" %>
+    </div>
+    <div class="new_input">
+      <%= form.label :password, "Пароль" %>
+      <%= form.password_field :password,  class: "form-control", placeholder: "********"%>
+    </div>
+    <div class="new_input">
+      <%= form.label :password_confirmation, "Подтверждение пароля" %>
+      <%= form.password_field :password_confirmation,  class: "form-control", placeholder: "********"%>
+    </div>
+
+
+    <div class="new_input">
+      <%= form.label :lastname, "Фамилия" %>
+      <%= form.text_field :lastname,  class: "form-control", placeholder: "Иванов"%>
+    </div>
+    <div class="new_input">
+      <%= form.label :firstname, "Имя" %>
+      <%= form.text_field :firstname,  class: "form-control", placeholder: "Иван"%>
+    </div>
+    <div class="new_input">
+      <%= form.label :prename, "Отчество" %>
+      <%= form.text_field :prename,  class: "form-control", placeholder: "Иванович"%>
+    </div>
+    <div class="new_input">
+      <%= form.label :region, "Регион" %>
+      <%= form.text_field :region,  class: "form-control", placeholder: "Астраханская область"%>
+    </div>
+
+    <hr>
+
+    <div class="new_btn_block">
+      <%= form.submit "Создать", class: 'btn btn-primary new_reg_btn' %>
+    </div>
+  <% end %>
+</div>

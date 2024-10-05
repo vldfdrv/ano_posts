@@ -1,0 +1,24 @@
+<%= form_tag(posts_path, { :method => :get }) do %>
+  <fieldset>
+    <legend><%= "Поиск" %></legend>
+
+    <label for='region'><%= "Регион" %>:</label>
+    <%= text_field_tag 'region', params[:region] %>
+
+    <% if !@authors.nil? %>
+      <label for='user_id'><%= "Автор поста" %>:</label>
+      <%= select_tag 'user_id', content_tag('option') + options_from_collection_for_select(@authors, :id, :login, params[:user_id].to_i), :onchange => "this.form.submit(); return false;"  %>
+    <% end %>
+
+    <label for='created_at_from'><%= "Дата создания (от)" %>:</label>
+    <%= date_field_tag 'created_at_from', params[:created_at_from] %>
+
+    <label for='created_at_to'><%= "Дата создания (по)" %>:</label>
+    <%= date_field_tag 'created_at_to', params[:created_at_to] %>
+
+    <%= submit_tag "Поиск", class: "new_reg_btn" %>
+    <%= link_to "Очистить", posts_path %>
+  </fieldset>
+<% end %>
+
+<%= render "posts" %>

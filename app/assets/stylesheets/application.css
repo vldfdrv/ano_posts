@@ -1,0 +1,64 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+    background: rgb(236,236,236);
+    background: linear-gradient(90deg, rgba(236,236,236,1) 0%, rgba(211,223,252,1) 35%);
+}
+fieldset {
+    margin: 15px 0;
+}
+.header {
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(19,79,222,1) 35%, rgba(255,0,0,1) 100%);
+    margin-top: -8px;
+    margin-left: -9px;
+    width: 100vw;
+    padding: 10px 0
+}
+.main_reg_block {
+    width: 500px;
+    margin: auto;
+}
+
+.new_input {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    display: grid;
+}
+
+.new_btn_block {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.new_reg_btn {
+    background: #1982ff;
+    color: white;
+    border-radius: 4px;
+    padding: 4px 7px;
+    border: 1px solid #00018b;
+}
+
+.white {
+    color: white;
+}
+
+.blue {
+    color: #1550de;
+}

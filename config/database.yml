@@ -1,0 +1,8 @@
+development: &default
+  adapter: postgresql
+  username: ano_national_posts
+  database: ano_national_posts
+  pool: 40
+  timeout: 5000
+  port: 5432
+
