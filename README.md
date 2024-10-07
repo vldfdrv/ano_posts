@@ -8,3 +8,12 @@ bundle install
 bundle exec rake db:migrate
 
 rails s
+
+redis-server
+
+bundle exec sidekiq
+
+#post_id = Post.first.id
+#StatusChangingWorker.perform_async(post_id, Post::STATUS_APPROVED)
+
+

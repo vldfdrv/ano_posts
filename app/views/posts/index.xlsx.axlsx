@@ -1,0 +1,11 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Посты") do |sheet|
+  # this is the head row of your spreadsheet
+  sheet.add_row %w(логин регион текст дата)
+
+  # each user is a row on your spreadsheet
+  @posts.each do |post|
+    sheet.add_row [post.user.login, post.text, post.region, post.created_at.strftime("%d.%m.%Y %H:%m")]
+  end
+end

@@ -22,6 +22,11 @@ class PostsController < ApplicationController
     end
 
     @posts = @posts.where(id: scope.pluck(:id))
+
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
   end
 
   def my_drafts
@@ -30,6 +35,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new()
+    @file = File.new()
   end
 
   def create
@@ -61,7 +67,7 @@ class PostsController < ApplicationController
     else
       Post::STATUS_INSPECT
     end
-    post.update(status: status)
+    post.update(status: status, created_at: DateTime.now)
     redirect_to posts_path
   end
 
