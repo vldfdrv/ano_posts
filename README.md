@@ -13,6 +13,9 @@ redis-server
 
 bundle exec sidekiq
 
+sudo apt-get install shared-mime-info
+
+
 #post_id = Post.first.id
 #StatusChangingWorker.perform_async(post_id, Post::STATUS_APPROVED)
 

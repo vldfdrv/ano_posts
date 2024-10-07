@@ -7,6 +7,19 @@
       <div style="border: 1px solid grey; width: 300px; border-radius: 4px;  padding: 10px 5px;">
         <%= post.text %>
       </div>
+      <% if post.attachments.present? %>
+        <div style="border: 1px solid grey; width: 300px; border-radius: 4px;  padding: 10px 5px;">
+          <% post.attachments.each do |atta| %>
+            <%= link_to atta do %>
+              <% if atta.content_type.include?("image") %>
+                <%= image_tag(atta, style: "width: 30px") %>
+              <% else %>
+                <%= image_tag("document.png", style: "width: 30px") %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
       <% if params[:action] == "my_drafts" %>
         <div>
           <%= post.status %>

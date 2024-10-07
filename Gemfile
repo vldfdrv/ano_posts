@@ -42,7 +42,7 @@ gem 'axlsx_rails'
 gem 'sidekiq', '6.5.5'
 gem 'sidekiq-cron', '~> 1.1'
 gem 'redis', '4.7.1'
-
+gem "image_processing", ">= 1.2"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

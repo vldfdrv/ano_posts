@@ -35,20 +35,20 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new()
-    @file = File.new()
   end
 
   def create
-    @post = Post.new(text: params[:post][:text])
-    @post.user_id = current_user.id
-    @post.region = current_user.region
-    @post.status = if params[:to_draft].present?
+    byebug
+    @post = Post.create(post_params)
+    status = if params[:to_draft].present?
                      Post::STATUS_DRAFT
                    elsif params[:to_inspect].present?
                      Post::STATUS_INSPECT
                    elsif params[:to_approved].present?
                      Post::STATUS_APPROVED
                    end
+    @post.update(user_id: current_user.id, region: current_user.region, status: status)
+
     if @post.save
       redirect_to posts_path, notice: "Successfully created post!"
 
@@ -74,5 +74,10 @@ class PostsController < ApplicationController
 
   def authorized
     redirect_to log_in_path unless logged_in?
+  end
+
+  private
+  def post_params
+    params.require(:post).permit(:text, attachments:[])
   end
 end
